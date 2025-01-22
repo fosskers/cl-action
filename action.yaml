@@ -24,6 +24,15 @@ runs:
       run: |
         sudo apt install ${{ inputs.compiler }}
 
+    - name: Set up Vend
+      shell: bash
+      run: |
+        sudo apt install git ecl
+        git clone --depth 1 https://github.com/fosskers/vend.git
+        cd vend
+        ecl --load build.lisp
+        ./vend --version
+
     # - name: Set Greeting
     #   run: echo "Hello $INPUT_WHO_TO_GREET."
     #   shell: bash
