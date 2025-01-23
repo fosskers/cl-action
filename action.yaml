@@ -27,11 +27,24 @@ runs:
     - name: Set up Vend
       shell: bash
       run: |
+        cd $RUNNER_TEMP
         sudo apt install git ecl
         git clone --depth 1 https://github.com/fosskers/vend.git
         cd vend
         ecl --load build.lisp
-        ./vend --version
+        pwd >> $GITHUB_PATH
+        vend --version
+
+    - name: Fetch Dependencies
+      shell: bash
+      run: |
+        pwd
+        vend get
+
+    - name: Run Tests
+      shell: bash
+      run: |
+        vend test ${{ inputs.compiler }}
 
     # - name: Set Greeting
     #   run: echo "Hello $INPUT_WHO_TO_GREET."
@@ -45,7 +58,8 @@ runs:
     #   env:
     #     GITHUB_ACTION_PATH: ${{ github.action_path }}
 
-    - name: Run goodbye.sh
-      shell: bash
-      run: |
-        ${{ github.action_path }}/goodbye.sh
+    # - name: Run goodbye.sh
+    #   shell: bash
+    #   run: |
+    #     vend --version
+    #     ${{ github.action_path }}/goodbye.sh
