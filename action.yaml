@@ -33,12 +33,12 @@ runs:
         cd vend
         ecl --load build.lisp
         pwd >> $GITHUB_PATH
-        vend --version
 
     - name: Fetch Dependencies
       shell: bash
       run: |
         pwd
+        vend --version
         vend get
 
     - name: Run Tests
