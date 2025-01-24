@@ -1,5 +1,9 @@
-name: "Common Lisp"
+name: "Common Lisp Testing"
+author: "Colin Woodbury"
 description: "An all-inclusive testing and caching Action for Common Lisp."
+branding:
+  icon: check-circle
+  color: green
 
 inputs:
   compiler:
