@@ -19,7 +19,7 @@ runs:
       run: |
         sudo apt install ${{ inputs.compiler }}
 
-    - name: Set up Vend
+    - name: Install Vend
       shell: bash
       run: |
         cd $RUNNER_TEMP
@@ -32,11 +32,12 @@ runs:
     - name: Fetch Dependencies
       shell: bash
       run: |
-        pwd
         vend --version
         vend get
 
-    - name: Run Tests
-      shell: bash
-      run: |
-        vend test ${{ inputs.compiler }}
+    - name: Dependency Caching
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.cache/common-lisp/
+        key: ${{ runner.os }}-${{ hashFiles("*.asd") }}
