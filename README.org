@@ -1,0 +1,68 @@
+#+title: Github Action for Common Lisp
+
+This Action:
+
+- Installs a Common Lisp compiler of your choice (SBCL, ECL, or ABCL).
+- Uses the [[https://github.com/fosskers/vend][vend]] tool to fetch dependencies.
+- Enables trivial testing of your project.
+- Caches your build artifacts (FASL files).
+
+#+begin_quote
+⚠ Currently only the =ubuntu= runner is supported.
+#+end_quote
+
+* Table of Contents :TOC_5_gh:noexport:
+- [[#usage][Usage]]
+  - [[#basics][Basics]]
+  - [[#compiler-selection][Compiler Selection]]
+
+* Usage
+
+** Basics
+
+Create a =.github/workflows/cl.yaml= file with the following contents:
+
+#+begin_src yaml
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Unit Tests
+    steps:
+      - name: Clone the Project
+        uses: actions/checkout@v4
+
+      - name: Set up Common Lisp
+        uses: fosskers/common-lisp@v1
+
+      - name: Test
+        run: |
+          vend test
+#+end_src
+
+Your dependencies will be automatically fetched by =vend=, so you're free to do
+what you please in subseqent steps. In the example here, we simply call =vend
+test=, which returns the proper error code to fail the job if any tests failed.
+
+** Compiler Selection
+
+By default =vend= operates with SBCL, but we can customize this:
+
+#+begin_src yaml
+- name: Install Vend
+  uses: fosskers/common-lisp@v0.0.8
+  with:
+    compiler: ecl
+#+end_src
+
+then subsequent steps will have ECL available to them:
+
+#+begin_src yaml
+- name: Test
+  run: |
+    vend test ecl
+#+end_src
