@@ -40,4 +40,4 @@ runs:
       with:
         path: |
           ~/.cache/common-lisp/
-        key: ${{ runner.os }}-${{ hashFiles("*.asd") }}
+        key: ${{ runner.os }}-${{ hashFiles('*.asd') }}
