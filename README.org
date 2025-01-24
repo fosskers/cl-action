@@ -45,8 +45,8 @@ jobs:
 #+end_src
 
 Your dependencies will be automatically fetched by =vend=, so you're free to do
-what you please in subseqent steps. In the example here, we simply call =vend
-test=, which returns the proper error code to fail the job if any tests failed.
+what you please in subseqent steps. In the example here, we simply call =vend test=,
+which returns the proper error code to fail the job if any tests failed.
 
 ** Compiler Selection
 
