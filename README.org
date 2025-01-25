@@ -54,7 +54,7 @@ By default =vend= operates with SBCL, but we can customize this:
 
 #+begin_src yaml
 - name: Install Vend
-  uses: fosskers/common-lisp@v0.0.8
+  uses: fosskers/common-lisp@v1
   with:
     compiler: ecl
 #+end_src
