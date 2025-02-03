@@ -12,6 +12,7 @@ inputs:
         - sbcl
         - ecl
         - abcl
+        - clisp
     required: true
     default: "sbcl"
 

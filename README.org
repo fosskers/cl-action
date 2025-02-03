@@ -2,7 +2,7 @@
 
 This Action:
 
-- Installs a Common Lisp compiler of your choice (SBCL, ECL, or ABCL).
+- Installs a Common Lisp compiler of your choice (SBCL, ECL, ABCL, or Clisp).
 - Uses the [[https://github.com/fosskers/vend][vend]] tool to fetch dependencies.
 - Enables trivial testing of your project.
 - Caches your build artifacts (FASL files).
